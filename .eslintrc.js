@@ -1,0 +1,36 @@
+module.exports = {
+    env: {
+        browser: true,
+        es2021: true,
+        node: true,
+        jest: true
+    },
+    extends: ['eslint:recommended'],
+    parserOptions: {
+        ecmaVersion: 12,
+        sourceType: 'module'
+    },
+    rules: {
+        indent: ['error', 4],
+        'linebreak-style': ['error', 'unix'],
+        quotes: ['error', 'single'],
+        semi: ['error', 'always'],
+        'no-unused-vars': ['warn'],
+        'no-console': ['warn'],
+        'prefer-const': ['error'],
+        'no-var': ['error'],
+        eqeqeq: ['error', 'always'],
+        curly: ['error', 'all'],
+        'brace-style': ['error', '1tbs'],
+        'comma-dangle': ['error', 'never'],
+        'no-trailing-spaces': ['error'],
+        'eol-last': ['error', 'always'],
+        'space-before-function-paren': ['error', 'never'],
+        'keyword-spacing': ['error', { before: true, after: true }],
+        'space-infix-ops': ['error'],
+        'object-curly-spacing': ['error', 'always']
+    },
+    globals: {
+        Stripe: 'readonly'
+    }
+};

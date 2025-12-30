@@ -1,37 +1,58 @@
 # DUNYA Catering Website
 
-A modern, responsive catering website for DUNYA restaurant featuring a beautiful design with green, blue, yellow, and red color scheme on a white background.
+A modern, full-stack catering website for DUNYA restaurant featuring a beautiful design with green, blue, yellow, and red color scheme on a white background. Built with Node.js, Express, and Stripe payment integration.
+
+[![Node.js](https://img.shields.io/badge/Node.js-14%2B-green)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-4.18%2B-blue)](https://expressjs.com/)
+[![Stripe](https://img.shields.io/badge/Stripe-Payment-purple)](https://stripe.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 ## 🌟 Features
 
 ### 1. Landing Page
+
 - **Visually appealing hero section** with gradient background and call-to-action
 - **Professional navigation** with smooth scrolling
 - **About section** highlighting key features and services
 - **Responsive design** that works on all devices
 
 ### 2. Menu Page
+
 - **Categorized menu items**: Breakfast, Lunch, Dinner, Desserts, Drinks
 - **Advanced filtering system**:
-  - Category filters (All, Breakfast, Lunch, Dinner, Desserts, Drinks)
-  - Dietary filters (Vegetarian, Halal, Gluten-Free, Vegan)
+    - Category filters (All, Breakfast, Lunch, Dinner, Desserts, Drinks)
+    - Dietary filters (Vegetarian, Halal, Gluten-Free, Vegan)
 - **Interactive menu cards** with pricing and dietary tags
 - **Downloadable menu** in text format
 - **Beautiful animations** and hover effects
 
 ### 3. Booking/Order Form
+
 - **Comprehensive booking form** with all required fields:
-  - Name, Email, Phone Number
-  - Event Date, Event Type, Number of Guests
-  - Catering Package Selection
-  - Special Requirements
+    - Name, Email, Phone Number
+    - Event Date, Event Type, Number of Guests
+    - Catering Package Selection
+    - Special Requirements
 - **Form validation** with real-time feedback
 - **Package information** that updates based on selection
 - **Email integration** (simulated)
 
+### 4. Payment System
+
+- **Stripe integration** for secure payment processing
+- **Cost calculation** based on package selection and guest count
+- **Payment options**:
+    - 50% deposit option
+    - Full payment option (with 5% discount)
+- **Real-time payment processing** with loading states
+- **Payment confirmation** with booking details
+- **Service fee calculation** (10% automatically added)
+- **Secure card input** using Stripe Elements
+
 ## 🎨 Design Features
 
 ### Color Scheme
+
 - **Primary Green**: #2E8B57 (Sea Green)
 - **Secondary Green**: #3CB371 (Medium Sea Green)
 - **Primary Blue**: #4169E1 (Royal Blue)
@@ -43,11 +64,13 @@ A modern, responsive catering website for DUNYA restaurant featuring a beautiful
 - **Background**: White (#FFFFFF)
 
 ### Typography
+
 - **Headings**: Playfair Display (serif)
 - **Body Text**: Poppins (sans-serif)
 - **Modern and readable** font combinations
 
 ### Responsive Design
+
 - **Mobile-first approach**
 - **Flexible grid layouts**
 - **Touch-friendly navigation**
@@ -56,32 +79,97 @@ A modern, responsive catering website for DUNYA restaurant featuring a beautiful
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - A modern web browser (Chrome, Firefox, Safari, Edge)
-- No additional dependencies required
+- Node.js (version 14 or higher) for payment processing
+- Stripe account for payment processing (optional for demo)
 
 ### Installation
-1. Clone or download the project files
-2. Open `index.html` in your web browser
-3. The website will load immediately with all functionality
 
-### File Structure
+#### Quick Start (Development)
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/dunya-catering-website.git
+cd dunya-catering-website
+
+# Install dependencies
+npm install
+
+# Start development servers (frontend + backend)
+npm run dev
+```
+
+#### Production Build
+
+```bash
+# Install dependencies
+npm install
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+```
+
+#### Environment Setup
+
+1. Copy the environment template:
+    ```bash
+    cp env.example .env
+    ```
+2. Fill in your Stripe keys and other configuration in `.env`
+3. For production, set `NODE_ENV=production`
+
+#### Available Scripts
+
+- `npm run dev` - Start development servers (frontend + backend)
+- `npm run build` - Build production-ready files
+- `npm start` - Build and start production server
+- `npm test` - Run test suite
+- `npm run lint` - Check code quality
+- `npm run format` - Format code with Prettier
+- `npm run validate` - Run linting and tests
+
+### Project Structure
+
 ```
 dunya-catering/
-├── index.html          # Main HTML file
-├── styles.css          # CSS styles and responsive design
-├── script.js           # JavaScript functionality
-└── README.md           # Project documentation
+├── public/                 # Frontend source files
+│   ├── index.html         # Main HTML file
+│   ├── styles.css         # CSS styles and responsive design
+│   └── script.js          # JavaScript functionality
+├── server/                 # Backend source files
+│   └── payment-handler.js # Express server with Stripe integration
+├── config/                 # Configuration files
+│   └── app.config.js      # Environment-specific configuration
+├── tests/                  # Test files
+│   ├── setup.js           # Jest test setup
+│   └── server.test.js     # Server API tests
+├── scripts/                # Build scripts
+│   └── update-references.js # Asset reference updater
+├── dist/                   # Built files (generated)
+├── coverage/               # Test coverage reports (generated)
+├── package.json           # Dependencies and scripts
+├── .eslintrc.js           # ESLint configuration
+├── .prettierrc            # Prettier configuration
+├── jest.config.js         # Jest testing configuration
+├── env.example            # Environment variables template
+└── README.md              # Project documentation
 ```
 
 ## 📱 Features in Detail
 
 ### Navigation
+
 - **Fixed navigation bar** with blur effect
 - **Mobile hamburger menu** for smaller screens
 - **Smooth scrolling** to sections
 - **Active state indicators**
 
 ### Menu System
+
 - **12 sample menu items** across all categories
 - **Dynamic filtering** by category and dietary preferences
 - **Visual tags** for dietary restrictions
@@ -89,6 +177,7 @@ dunya-catering/
 - **Emoji icons** for visual appeal
 
 ### Booking System
+
 - **Comprehensive form validation**
 - **Real-time field validation**
 - **Package selection with descriptions**
@@ -97,6 +186,7 @@ dunya-catering/
 - **Success feedback** after submission
 
 ### Interactive Elements
+
 - **Hover effects** on buttons and cards
 - **Smooth animations** using CSS transitions
 - **Intersection Observer** for scroll animations
@@ -105,6 +195,7 @@ dunya-catering/
 ## 🛠️ Customization
 
 ### Adding Menu Items
+
 Edit the `menuItems` array in `script.js`:
 
 ```javascript
@@ -120,19 +211,21 @@ Edit the `menuItems` array in `script.js`:
 ```
 
 ### Changing Colors
+
 Modify the CSS custom properties in `styles.css`:
 
 ```css
 :root {
-    --primary-green: #2E8B57;
-    --primary-blue: #4169E1;
-    --primary-yellow: #FFD700;
-    --primary-red: #DC143C;
+    --primary-green: #2e8b57;
+    --primary-blue: #4169e1;
+    --primary-yellow: #ffd700;
+    --primary-red: #dc143c;
     /* ... other colors */
 }
 ```
 
 ### Adding New Categories
+
 1. Add the category to the filter buttons in `index.html`
 2. Add menu items with the new category in `script.js`
 3. Update the download function if needed
@@ -140,6 +233,7 @@ Modify the CSS custom properties in `styles.css`:
 ## 📧 Contact Information
 
 The website includes placeholder contact information:
+
 - **Phone**: (555) 123-4567
 - **Email**: info@dunya-catering.com
 - **Address**: 123 Main Street, City, State
@@ -147,18 +241,21 @@ The website includes placeholder contact information:
 ## 🔧 Technical Details
 
 ### Browser Support
+
 - Chrome 60+
 - Firefox 55+
 - Safari 12+
 - Edge 79+
 
 ### Performance
+
 - **Lightweight** - No external dependencies
 - **Fast loading** - Optimized CSS and JavaScript
 - **SEO friendly** - Semantic HTML structure
 - **Accessible** - ARIA labels and keyboard navigation
 
 ### Security
+
 - **Client-side validation** for immediate feedback
 - **XSS protection** through proper input sanitization
 - **No sensitive data** stored locally
@@ -166,6 +263,7 @@ The website includes placeholder contact information:
 ## 🎯 Future Enhancements
 
 Potential improvements for the website:
+
 - **Backend integration** for real form submission
 - **Image upload** for menu items
 - **Online payment** integration
@@ -185,4 +283,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-**DUNYA Catering** - Bringing world-class cuisine to your special moments. 
+**DUNYA Catering** - Bringing world-class cuisine to your special moments.

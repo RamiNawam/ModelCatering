@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>DUNYA - Premium Catering Services</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <script src="https://js.stripe.com/v3/"></script>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>DUNYA</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#menu" class="nav-link">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#booking" class="nav-link">Book Now</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Dunya Catering is now live!</h1>
+                <p class="hero-subtitle">
+                    From intimate gatherings to grand celebrations, DUNYA brings flavor
+                    to your special moments
+                </p>
+                <div class="hero-buttons">
+                    <a href="#booking" class="btn btn-primary">Book Your Event Now</a>
+                    <a href="#menu" class="btn btn-secondary">View Our Menu</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-overlay"></div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="menu-section">
+            <div class="container">
+                <h2>Our Menu</h2>
+                <div class="menu-filters">
+                    <button class="filter-btn active" data-category="all">All</button>
+                    <button class="filter-btn" data-category="shawarma">Shawarma Station</button>
+                    <button class="filter-btn" data-category="falafel">Falafel Station</button>
+                    <button class="filter-btn" data-category="sides">Sides</button>
+                    <button class="filter-btn" data-category="drinks">Drinks</button>
+                </div>
+                <div class="dietary-filters">
+                    <label><input type="checkbox" data-filter="vegetarian" /> Vegetarian</label>
+                    <label><input type="checkbox" data-filter="gluten-free" /> Gluten-Free</label>
+                </div>
+                <div class="menu-grid" id="menuGrid">
+                    <!-- Menu items will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="booking" class="booking-section">
+            <div class="container">
+                <h2>Book Your Event</h2>
+                <div class="booking-content">
+                    <div class="booking-form">
+                        <form id="bookingForm">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="eventDate">Event Date *</label>
+                                <input type="date" id="eventDate" name="eventDate" required />
+                            </div>
+                            
+                            <!-- Order Cart Section -->
+                            <div class="form-group">
+                                <label>Select Items for Your Order</label>
+                                <div class="menu-cart-section" id="menuCartSection">
+                                    <!-- Menu items with quantity inputs will be populated by JavaScript -->
+                                </div>
+                                <div class="cart-summary" id="cartSummary" style="display: none;">
+                                    <div class="cart-total">
+                                        <strong>Subtotal: <span id="cartSubtotal">$0.00</span></strong>
+                                    </div>
+                                    <p class="minimum-order-disclaimer">
+                                        <small>* Minimum order of $150 CAD required for catering orders</small>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Special Requirements</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="4"
+                                    placeholder="Any dietary restrictions, special requests, or additional information..."
+                                ></textarea>
+                            </div>
+
+                            <!-- Payment Section -->
+                            <div class="payment-section" id="paymentSection" style="display: none">
+                                <h3>Payment Information</h3>
+                                <div class="payment-summary">
+                                    <div class="cost-breakdown">
+                                        <div class="cost-item">
+                                            <span>Package Cost:</span>
+                                            <span id="packageCost">$0</span>
+                                        </div>
+                                        <div class="cost-item">
+                                            <span>Service Fee (10%):</span>
+                                            <span id="serviceFee">$0</span>
+                                        </div>
+                                        <div class="cost-item total">
+                                            <span><strong>Total Amount:</strong></span>
+                                            <span id="totalAmount"><strong>$0</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="payment-options">
+                                    <h4>Payment Method</h4>
+                                    <div class="payment-method-selection">
+                                        <label class="payment-option">
+                                            <input
+                                                type="radio"
+                                                name="paymentMethod"
+                                                value="deposit"
+                                                checked
+                                            />
+                                            <span class="payment-option-content">
+                                                <strong>Pay Deposit (50%)</strong>
+                                                <small
+                                                    >Secure your booking with a 50% deposit</small
+                                                >
+                                            </span>
+                                        </label>
+                                        <label class="payment-option">
+                                            <input type="radio" name="paymentMethod" value="full" />
+                                            <span class="payment-option-content">
+                                                <strong>Pay Full Amount</strong>
+                                                <small
+                                                    >Complete payment now (5% discount
+                                                    applied)</small
+                                                >
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Stripe Payment Element -->
+                                <div class="payment-form">
+                                    <h4>Card Details</h4>
+                                    <div id="card-element">
+                                        <!-- Stripe Elements will create form elements here -->
+                                    </div>
+                                    <div id="card-errors" role="alert"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" id="calculateBtn" class="btn btn-secondary">
+                                    Calculate Cost & Continue
+                                </button>
+                                <button
+                                    type="submit"
+                                    id="submitBtn"
+                                    class="btn btn-primary"
+                                    style="display: none"
+                                >
+                                    <span id="submitText">Complete Booking & Pay</span>
+                                    <span id="submitAmount"></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="booking-info">
+                        <div class="contact-info">
+                            <h3>Contact Us</h3>
+                            <p><i class="fas fa-phone"></i> 514 845 9006</p>
+                            <p><i class="fab fa-instagram"></i> dunya.mtl</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>DUNYA</h3>
+                        <p>
+                            Exquisite catering for every occasion. Bringing world-class cuisine to
+                            your special moments.
+                        </p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#menu">Menu</a></li>
+                            <li><a href="#booking">Book Now</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 DUNYA Catering. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>
